@@ -181,7 +181,8 @@ export const updateResource = (resource, {
     dispatch(apiWillUpdate(resource));
 
     const { host: apiHost, path: apiPath, headers } = getState().api.endpoint;
-    const endpoint = `${apiHost}${apiPath}/${resource.type}/${resource.id}`;
+    const id = resource.id ? `/${resource.id}` : ""
+    const endpoint = `${apiHost}${apiPath}/${resource.type}${id}`;
 
     return new Promise((resolve, reject) => {
       apiRequest(endpoint, {
@@ -219,7 +220,8 @@ export const deleteResource = (resource, {
     dispatch(apiWillDelete(resource));
 
     const { host: apiHost, path: apiPath, headers } = getState().api.endpoint;
-    const endpoint = `${apiHost}${apiPath}/${resource.type}/${resource.id}`;
+    const id = resource.id ? `/${resource.id}` : ""
+    const endpoint = `${apiHost}${apiPath}/${resource.type}${id}`;
 
     return new Promise((resolve, reject) => {
       apiRequest(endpoint, {

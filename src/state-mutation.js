@@ -189,9 +189,8 @@ export const removeResourceFromState = (state, resource) => {
   }, imm(state).del(path));
 };
 
-export const updateOrInsertResourcesIntoState = (state, resources, payloadOptions = {}) => {
+export const updateOrInsertResourcesIntoState = (state, resources, clearTypes = []) => {
   let newState = state;
-  const clearTypes = payloadOptions.clearTypes || [];
   clearTypes.forEach((type) => {
     newState = imm.del(newState, type);
   });
